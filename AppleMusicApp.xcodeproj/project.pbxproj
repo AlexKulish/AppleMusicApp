@@ -13,6 +13,8 @@
 		5905945A28BF8BB800E24D9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5905945828BF8BB800E24D9A /* Main.storyboard */; };
 		5905945C28BF8BB900E24D9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5905945B28BF8BB900E24D9A /* Assets.xcassets */; };
 		5905945F28BF8BB900E24D9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5905945D28BF8BB900E24D9A /* LaunchScreen.storyboard */; };
+		5905946728BF913100E24D9A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905946628BF913100E24D9A /* MainTabBarController.swift */; };
+		5905946C28BF92F100E24D9A /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905946B28BF92F100E24D9A /* SearchTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		5905945B28BF8BB900E24D9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5905945E28BF8BB900E24D9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5905946028BF8BB900E24D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5905946628BF913100E24D9A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		5905946B28BF92F100E24D9A /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,41 @@
 		5905945128BF8BB800E24D9A /* AppleMusicApp */ = {
 			isa = PBXGroup;
 			children = (
-				5905945228BF8BB800E24D9A /* AppDelegate.swift */,
-				5905945428BF8BB800E24D9A /* SceneDelegate.swift */,
+				5905946628BF913100E24D9A /* MainTabBarController.swift */,
+				5905946B28BF92F100E24D9A /* SearchTableViewController.swift */,
 				5905945628BF8BB800E24D9A /* ViewController.swift */,
-				5905945828BF8BB800E24D9A /* Main.storyboard */,
-				5905945B28BF8BB900E24D9A /* Assets.xcassets */,
-				5905945D28BF8BB900E24D9A /* LaunchScreen.storyboard */,
-				5905946028BF8BB900E24D9A /* Info.plist */,
+				5905946A28BF92A400E24D9A /* SupportFiles */,
+				5905946928BF929900E24D9A /* Resources */,
+				5905946828BF928700E24D9A /* Storyboards */,
 			);
 			path = AppleMusicApp;
+			sourceTree = "<group>";
+		};
+		5905946828BF928700E24D9A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				5905945828BF8BB800E24D9A /* Main.storyboard */,
+				5905945D28BF8BB900E24D9A /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		5905946928BF929900E24D9A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5905945B28BF8BB900E24D9A /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5905946A28BF92A400E24D9A /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				5905945228BF8BB800E24D9A /* AppDelegate.swift */,
+				5905945428BF8BB800E24D9A /* SceneDelegate.swift */,
+				5905946028BF8BB900E24D9A /* Info.plist */,
+			);
+			path = SupportFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +170,8 @@
 			files = (
 				5905945728BF8BB800E24D9A /* ViewController.swift in Sources */,
 				5905945328BF8BB800E24D9A /* AppDelegate.swift in Sources */,
+				5905946C28BF92F100E24D9A /* SearchTableViewController.swift in Sources */,
+				5905946728BF913100E24D9A /* MainTabBarController.swift in Sources */,
 				5905945528BF8BB800E24D9A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +323,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4XK5S24922;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AppleMusicApp/Info.plist;
+				INFOPLIST_FILE = AppleMusicApp/SupportFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -319,7 +351,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4XK5S24922;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AppleMusicApp/Info.plist;
+				INFOPLIST_FILE = AppleMusicApp/SupportFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
