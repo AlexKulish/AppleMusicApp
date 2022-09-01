@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 struct Track {
     let artist: String
@@ -63,7 +64,23 @@ extension SearchTableViewController {
 extension SearchTableViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        
+        let url = "https://itunes.apple.com/search?term=\(searchText)"
+        
+        AF.request(url).response { data in
+            if let error = data.error {
+                print(error.localizedDescription)
+            }
+            
+            guard let data = data.data else { return }
+            
+            let someString = String(data: data, encoding: .utf8)
+            
+            print(someString ?? "")
+            
+        }
+        
+        
     }
     
 }
