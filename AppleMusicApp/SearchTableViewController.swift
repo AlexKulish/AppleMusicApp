@@ -8,17 +8,11 @@
 import UIKit
 import Alamofire
 
-struct Track {
-    let artist: String
-    let song: String
-}
-
 class SearchTableViewController: UITableViewController {
     
-    let tracks = [
-        Track(artist: "Eminem", song: "Lose yourself"),
-        Track(artist: "Maxim", song: "Do you know?")
-    ]
+    private var timer: Timer?
+    
+    private var tracks = [Track]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +46,7 @@ extension SearchTableViewController {
         let track = tracks[indexPath.row]
         var content = cell.defaultContentConfiguration()
         content.image = UIImage(named: "Image")
-        content.text = "\(track.artist)\n\(track.song)"
+        content.text = "\(track.artistName)\n\(track.trackName ?? "Unknown track name")"
         cell.contentConfiguration = content
         return cell
     }
@@ -65,22 +59,31 @@ extension SearchTableViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        let url = "https://itunes.apple.com/search?term=\(searchText)"
-        
-        AF.request(url).response { data in
-            if let error = data.error {
-                print(error.localizedDescription)
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
+            
+            let url = "https://itunes.apple.com/search"
+            let parameters = ["term": "\(searchText)", "limit": "15"]
+            
+            AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default).responseData { data in
+                if let error = data.error {
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                guard let data = data.data else { return }
+                
+                let decoder = JSONDecoder()
+                
+                do {
+                    let tracks = try decoder.decode(TrackModel.self, from: data)
+                    self.tracks = tracks.results
+                    self.tableView.reloadData()
+                } catch let error {
+                    print("Failed to decode JSON", error)
+                }
             }
-            
-            guard let data = data.data else { return }
-            
-            let someString = String(data: data, encoding: .utf8)
-            
-            print(someString ?? "")
-            
-        }
-        
-        
+        })
     }
     
 }
