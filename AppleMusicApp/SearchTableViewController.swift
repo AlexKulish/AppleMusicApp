@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Alamofire
 
 class SearchTableViewController: UITableViewController {
     
@@ -61,28 +60,16 @@ extension SearchTableViewController: UISearchBarDelegate {
         
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
-            
-            let url = "https://itunes.apple.com/search"
-            let parameters = ["term": "\(searchText)", "limit": "15"]
-            
-            AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default).responseData { data in
-                if let error = data.error {
+            NetworkService.shared.fetchTracks(searchText: searchText) { [weak self] result in
+                switch result {
+                case .success(let tracks):
+                    self?.tracks = tracks.results
+                    self?.tableView.reloadData()
+                case .failure(let error):
                     print(error.localizedDescription)
-                    return
-                }
-                
-                guard let data = data.data else { return }
-                
-                let decoder = JSONDecoder()
-                
-                do {
-                    let tracks = try decoder.decode(TrackModel.self, from: data)
-                    self.tracks = tracks.results
-                    self.tableView.reloadData()
-                } catch let error {
-                    print("Failed to decode JSON", error)
                 }
             }
+            
         })
     }
     

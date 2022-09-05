@@ -16,6 +16,7 @@
 		5905946728BF913100E24D9A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905946628BF913100E24D9A /* MainTabBarController.swift */; };
 		5905946C28BF92F100E24D9A /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905946B28BF92F100E24D9A /* SearchTableViewController.swift */; };
 		598B50D028C20A8900B97458 /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598B50CF28C20A8900B97458 /* TrackModel.swift */; };
+		598D55FA28C5F73A00AFF843 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598D55F928C5F73A00AFF843 /* NetworkService.swift */; };
 		8C070284F22C792F6CC868F3 /* Pods_AppleMusicApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93BBEBB4F7829B93267090D /* Pods_AppleMusicApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		5905946628BF913100E24D9A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		5905946B28BF92F100E24D9A /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		598B50CF28C20A8900B97458 /* TrackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
+		598D55F928C5F73A00AFF843 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		D93BBEBB4F7829B93267090D /* Pods_AppleMusicApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppleMusicApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 				5905946628BF913100E24D9A /* MainTabBarController.swift */,
 				5905946B28BF92F100E24D9A /* SearchTableViewController.swift */,
 				5905945628BF8BB800E24D9A /* ViewController.swift */,
+				598D55F828C5F72900AFF843 /* Services */,
 				598B50CE28C209D500B97458 /* Model */,
 				5905946A28BF92A400E24D9A /* SupportFiles */,
 				5905946928BF929900E24D9A /* Resources */,
@@ -130,6 +133,14 @@
 				598B50CF28C20A8900B97458 /* TrackModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		598D55F828C5F72900AFF843 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				598D55F928C5F73A00AFF843 /* NetworkService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +264,7 @@
 				5905946C28BF92F100E24D9A /* SearchTableViewController.swift in Sources */,
 				5905946728BF913100E24D9A /* MainTabBarController.swift in Sources */,
 				5905945528BF8BB800E24D9A /* SceneDelegate.swift in Sources */,
+				598D55FA28C5F73A00AFF843 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
