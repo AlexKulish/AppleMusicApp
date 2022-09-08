@@ -14,10 +14,13 @@ protocol SearchDisplayLogic: AnyObject {
 
 class SearchViewController: UIViewController, SearchDisplayLogic {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     var interactor: SearchBusinessLogic?
     var router: (NSObjectProtocol & SearchRoutingLogic)?
     
-    @IBOutlet weak var tableView: UITableView!
+    private var searchViewModel = SearchViewModel(cells: [])
+    private var timer: Timer?
     
     
     // MARK: Setup
@@ -51,8 +54,10 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         switch viewModel {
         case .some:
             print("viewController .some")
-        case .displayTracks:
+        case .displayTracks(let searchViewModel):
             print("viewController .displayTracks")
+            self.searchViewModel = searchViewModel
+            tableView.reloadData()
         }
     }
     
@@ -74,13 +79,16 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        searchViewModel.cells.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath)
-        cell.textLabel?.text = "indexPath: \(indexPath)"
+        let track = searchViewModel.cells[indexPath.row]
+        var content = cell.defaultContentConfiguration()
+        content.image = UIImage(named: "Image")
+        content.text = "\(track.artistName)\n\(track.trackName)"
+        cell.contentConfiguration = content
         return cell
     }
 }
@@ -90,8 +98,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-        interactor?.makeRequest(request: .getTracks)
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
+            self.interactor?.makeRequest(request: .getTracks(searchText: searchText))
+        })
     }
     
 }

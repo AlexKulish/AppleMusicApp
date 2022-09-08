@@ -25,9 +25,16 @@ class SearchInteractor: SearchBusinessLogic {
         switch request {
         case .some:
             print("interactor .some")
-        case .getTracks:
+        case .getTracks(let searchText):
             print("interactor .getTracks")
-            presenter?.presentData(response: .presentTracks)
+            NetworkService.shared.fetchTracks(searchText: searchText) { [weak self] result in
+                switch result {
+                case .success(let trackModel):
+                    self?.presenter?.presentData(response: .presentTracks(trackModel: trackModel))
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
     
