@@ -35,10 +35,11 @@ enum Search {
 struct SearchViewModel {
     let cells: [Cell]
     
-    struct Cell {
+    struct Cell: TrackCellViewModelProtocol {
         let artistName: String
         let collectionName: String
         let trackName: String
         let iconStringUrl: String?
+        let previewUrl: String?
     }
 }

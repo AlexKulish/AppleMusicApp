@@ -17,4 +17,5 @@ struct Track: Decodable {
     let collectionName: String?
     let trackName: String?
     let artworkUrl100: String?
+    let previewUrl: String?
 }
