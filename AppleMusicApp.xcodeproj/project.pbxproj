@@ -14,7 +14,6 @@
 		5905945C28BF8BB900E24D9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5905945B28BF8BB900E24D9A /* Assets.xcassets */; };
 		5905945F28BF8BB900E24D9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5905945D28BF8BB900E24D9A /* LaunchScreen.storyboard */; };
 		5905946728BF913100E24D9A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905946628BF913100E24D9A /* MainTabBarController.swift */; };
-		5905946C28BF92F100E24D9A /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905946B28BF92F100E24D9A /* SearchTableViewController.swift */; };
 		593CF4E228C7470C00246F16 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CF4DB28C7470C00246F16 /* SearchPresenter.swift */; };
 		593CF4E328C7470C00246F16 /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CF4DC28C7470C00246F16 /* SearchWorker.swift */; };
 		593CF4E428C7470C00246F16 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CF4DD28C7470C00246F16 /* SearchRouter.swift */; };
@@ -42,7 +41,6 @@
 		5905945E28BF8BB900E24D9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5905946028BF8BB900E24D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5905946628BF913100E24D9A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		5905946B28BF92F100E24D9A /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		593CF4DB28C7470C00246F16 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		593CF4DC28C7470C00246F16 /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
 		593CF4DD28C7470C00246F16 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 			children = (
 				593CF4DA28C7461500246F16 /* Search */,
 				5905946628BF913100E24D9A /* MainTabBarController.swift */,
-				5905946B28BF92F100E24D9A /* SearchTableViewController.swift */,
 				5905945628BF8BB800E24D9A /* ViewController.swift */,
 				598D55F828C5F72900AFF843 /* Services */,
 				595BA42528C8ACF200BEA681 /* Helpers */,
@@ -320,7 +317,6 @@
 				5905945328BF8BB800E24D9A /* AppDelegate.swift in Sources */,
 				593CF4E728C7470C00246F16 /* SearchInteractor.swift in Sources */,
 				59D91FBD28CB328F00279E52 /* TrackCell.swift in Sources */,
-				5905946C28BF92F100E24D9A /* SearchTableViewController.swift in Sources */,
 				5905946728BF913100E24D9A /* MainTabBarController.swift in Sources */,
 				593CF4E328C7470C00246F16 /* SearchWorker.swift in Sources */,
 				593CF4E628C7470C00246F16 /* SearchViewController.swift in Sources */,
