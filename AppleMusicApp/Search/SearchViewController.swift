@@ -21,6 +21,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     
     private var searchViewModel = SearchViewModel(cells: [])
     private var timer: Timer?
+    private lazy var footerView = FooterView()
     
     
     // MARK: Setup
@@ -52,12 +53,14 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     
     func displayData(viewModel: Search.Model.ViewModel.ViewModelData) {
         switch viewModel {
-        case .some:
-            print("viewController .some")
         case .displayTracks(let searchViewModel):
             print("viewController .displayTracks")
             self.searchViewModel = searchViewModel
             tableView.reloadData()
+            footerView.hideLoader()
+        case .displayFooterView:
+            print("viewController .displayFooterView")
+            footerView.showLoader()
         }
     }
     
@@ -71,6 +74,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     private func setupTableView() {
         let nib = UINib(nibName: "TrackCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: TrackCell.reuseID)
+        tableView.tableFooterView = footerView
     }
     
 }
@@ -92,6 +96,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         84
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Please, enter some search term"
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        searchViewModel.cells.count > 0 ? 0 : 250
     }
 }
 
