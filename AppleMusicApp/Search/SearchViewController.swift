@@ -98,6 +98,24 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         84
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let searchViewModel = searchViewModel.cells[indexPath.row]
+        print("searchViewModel.trackName: ", searchViewModel.trackName)
+        
+        guard let trackDetailsView = Bundle.main.loadNibNamed("TrackDetailsView", owner: self, options: nil)?.first as? TrackDetailsView else { return }
+        let window = UIApplication.shared.keyWindow
+        /*
+         настройка без keyWindow
+         let window = UIApplication.shared.connectedScenes
+         .filter({$0.activationState == .foregroundActive})
+         .compactMap({$0 as? UIWindowScene})
+         .first?.windows
+         .filter({$0.isKeyWindow}).first
+         */
+        window?.addSubview(trackDetailsView)
+        
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "Please, enter some search term"
