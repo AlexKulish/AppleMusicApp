@@ -103,6 +103,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         print("searchViewModel.trackName: ", searchViewModel.trackName)
         
         guard let trackDetailsView = Bundle.main.loadNibNamed("TrackDetailsView", owner: self, options: nil)?.first as? TrackDetailsView else { return }
+        trackDetailsView.setupFrame(with: view)
+        trackDetailsView.configure(viewModel: searchViewModel)
         let window = UIApplication.shared.keyWindow
         /*
          настройка без keyWindow

@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lDr-Bo-dcV">
-                    <rect key="frame" x="30" y="44" width="354" height="818"/>
+                    <rect key="frame" x="30" y="44" width="354" height="788"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T6f-qY-kN6">
                             <rect key="frame" x="0.0" y="0.0" width="354" height="44"/>
@@ -30,7 +30,7 @@
                         </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E68-Vt-KrW">
                             <rect key="frame" x="0.0" y="54" width="354" height="354"/>
-                            <color key="backgroundColor" systemColor="systemBlueColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="E68-Vt-KrW" secondAttribute="height" multiplier="1:1" id="LYo-oV-IGX"/>
                             </constraints>
@@ -81,10 +81,10 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dwV-0w-XYv">
-                            <rect key="frame" x="0.0" y="544" width="354" height="247"/>
+                            <rect key="frame" x="0.0" y="544" width="354" height="217"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WXk-pP-aie">
-                                    <rect key="frame" x="0.0" y="113.5" width="118" height="20"/>
+                                    <rect key="frame" x="0.0" y="98.5" width="118" height="20"/>
                                     <color key="tintColor" systemColor="labelColor"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="Left"/>
@@ -93,7 +93,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7L6-CH-LWA">
-                                    <rect key="frame" x="118" y="105.5" width="118" height="36"/>
+                                    <rect key="frame" x="118" y="90.5" width="118" height="36"/>
                                     <color key="tintColor" systemColor="labelColor"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="Pause"/>
@@ -102,7 +102,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uN7-Xe-pi1">
-                                    <rect key="frame" x="236" y="113.5" width="118" height="20"/>
+                                    <rect key="frame" x="236" y="98.5" width="118" height="20"/>
                                     <color key="tintColor" systemColor="labelColor"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="Right"/>
@@ -113,7 +113,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zg2-Cr-Ff9">
-                            <rect key="frame" x="0.0" y="801" width="354" height="17"/>
+                            <rect key="frame" x="0.0" y="771" width="354" height="17"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon Min" translatesAutoresizingMaskIntoConstraints="NO" id="eQn-Mf-QJT">
                                     <rect key="frame" x="0.0" y="0.0" width="17" height="17"/>
@@ -145,7 +145,7 @@
             <constraints>
                 <constraint firstItem="lDr-Bo-dcV" firstAttribute="top" secondItem="JXn-Jr-2Sd" secondAttribute="top" id="R4h-7R-YaH"/>
                 <constraint firstItem="JXn-Jr-2Sd" firstAttribute="trailing" secondItem="lDr-Bo-dcV" secondAttribute="trailing" constant="30" id="nie-zJ-RlF"/>
-                <constraint firstItem="JXn-Jr-2Sd" firstAttribute="bottom" secondItem="lDr-Bo-dcV" secondAttribute="bottom" id="uRW-IK-MB5"/>
+                <constraint firstItem="JXn-Jr-2Sd" firstAttribute="bottom" secondItem="lDr-Bo-dcV" secondAttribute="bottom" constant="30" id="uRW-IK-MB5"/>
                 <constraint firstItem="lDr-Bo-dcV" firstAttribute="leading" secondItem="JXn-Jr-2Sd" secondAttribute="leading" constant="30" id="xCu-4h-98z"/>
             </constraints>
             <connections>
@@ -170,9 +170,6 @@
         <image name="Right" width="34" height="20"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
