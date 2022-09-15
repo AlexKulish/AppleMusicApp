@@ -15,6 +15,7 @@
 		5905945F28BF8BB900E24D9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5905945D28BF8BB900E24D9A /* LaunchScreen.storyboard */; };
 		5905946728BF913100E24D9A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905946628BF913100E24D9A /* MainTabBarController.swift */; };
 		592D3A4028CF2D58003BB1C8 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592D3A3F28CF2D58003BB1C8 /* FooterView.swift */; };
+		592D775928D32C5000B52949 /* CMTime + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592D775828D32C5000B52949 /* CMTime + Extension.swift */; };
 		593CF4E228C7470C00246F16 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CF4DB28C7470C00246F16 /* SearchPresenter.swift */; };
 		593CF4E328C7470C00246F16 /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CF4DC28C7470C00246F16 /* SearchWorker.swift */; };
 		593CF4E428C7470C00246F16 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CF4DD28C7470C00246F16 /* SearchRouter.swift */; };
@@ -45,6 +46,7 @@
 		5905946028BF8BB900E24D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5905946628BF913100E24D9A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		592D3A3F28CF2D58003BB1C8 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		592D775828D32C5000B52949 /* CMTime + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime + Extension.swift"; sourceTree = "<group>"; };
 		593CF4DB28C7470C00246F16 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		593CF4DC28C7470C00246F16 /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
 		593CF4DD28C7470C00246F16 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				595BA42628C8AD1400BEA681 /* UIViewController + Storyboard.swift */,
+				592D775828D32C5000B52949 /* CMTime + Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				5905946728BF913100E24D9A /* MainTabBarController.swift in Sources */,
 				593CF4E328C7470C00246F16 /* SearchWorker.swift in Sources */,
 				593CF4E628C7470C00246F16 /* SearchViewController.swift in Sources */,
+				592D775928D32C5000B52949 /* CMTime + Extension.swift in Sources */,
 				593CF4E428C7470C00246F16 /* SearchRouter.swift in Sources */,
 				593CF4E528C7470C00246F16 /* SearchModels.swift in Sources */,
 				5905945528BF8BB800E24D9A /* SceneDelegate.swift in Sources */,

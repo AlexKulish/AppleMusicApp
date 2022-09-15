@@ -83,6 +83,7 @@ class TrackDetailsView: UIView {
         artistNameLabel.text = viewModel.artistName
         playTrack(with: viewModel.previewUrl)
         monitoringStartTime()
+        observePlayerCurrentTime()
         let urlString600 = viewModel.iconStringUrl?.replacingOccurrences(of: "100x100", with: "600x600") ?? ""
         guard let url = URL(string: urlString600) else { return }
         trackImageView.sd_setImage(with: url, completed: nil)
@@ -119,6 +120,19 @@ class TrackDetailsView: UIView {
         player.addBoundaryTimeObserver(forTimes: times, queue: .main) { [weak self] in
             self?.increaseTrackImageView()
         }
+    }
+    
+    private func observePlayerCurrentTime() {
+        
+        let interval = CMTimeMake(value: 1, timescale: 2)
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] time in
+            self?.currentTimeLabel.text = time.displayString()
+            
+            let durationTime = self?.player.currentItem?.duration
+            let durationTimeText = ((durationTime ?? CMTimeMake(value: 1, timescale: 1)) - time).displayString()
+            self?.durationLabel.text = "-\(durationTimeText)"
+        }
+        
     }
     
     deinit {
