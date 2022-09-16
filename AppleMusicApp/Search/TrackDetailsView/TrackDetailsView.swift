@@ -9,6 +9,11 @@ import UIKit
 import SDWebImage
 import AVKit
 
+protocol TrackMovingDelegate: AnyObject {
+    func playPreviousTrack() -> SearchViewModel.Cell?
+    func playNextTrack() -> SearchViewModel.Cell?
+}
+
 class TrackDetailsView: UIView {
     
     // MARK: - IBOutlets
@@ -21,6 +26,8 @@ class TrackDetailsView: UIView {
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
+    
+    weak var delegate: TrackMovingDelegate?
     
     // MARK: - Private properties
     
@@ -60,9 +67,13 @@ class TrackDetailsView: UIView {
     }
     
     @IBAction func previousTrackButtonPressed(_ sender: Any) {
+        guard let cellViewModel = delegate?.playPreviousTrack() else { return }
+        configure(viewModel: cellViewModel)
     }
     
     @IBAction func nextTrackButtonPressed(_ sender: Any) {
+        guard let cellViewModel = delegate?.playNextTrack() else { return }
+        configure(viewModel: cellViewModel)
     }
     
     @IBAction func playPauseButtonPressed(_ sender: Any) {

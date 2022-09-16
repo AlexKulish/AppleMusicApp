@@ -105,6 +105,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         guard let trackDetailsView = Bundle.main.loadNibNamed("TrackDetailsView", owner: self, options: nil)?.first as? TrackDetailsView else { return }
         trackDetailsView.setupFrame(with: view)
         trackDetailsView.configure(viewModel: searchViewModel)
+        trackDetailsView.delegate = self
         let window = UIApplication.shared.keyWindow
         /*
          настройка без keyWindow
@@ -141,5 +142,43 @@ extension SearchViewController: UISearchBarDelegate {
             self.interactor?.makeRequest(request: .getTracks(searchText: searchText))
         })
     }
+    
+}
+
+// MARK: - TrackMovingDelegate
+
+extension SearchViewController: TrackMovingDelegate {
+    
+    private func getTrack(isNextTrack: Bool) -> SearchViewModel.Cell? {
+        
+        guard let indexPath = tableView.indexPathForSelectedRow else { return nil }
+        tableView.deselectRow(at: indexPath, animated: true)
+        var newIndexPath: IndexPath?
+        
+        if isNextTrack {
+            newIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+            if newIndexPath?.row == searchViewModel.cells.count {
+                newIndexPath?.row = 0
+            }
+        } else {
+            newIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+            if newIndexPath?.row == -1 {
+                newIndexPath?.row = searchViewModel.cells.count - 1
+            }
+        }
+        
+        tableView.selectRow(at: newIndexPath, animated: true, scrollPosition: .none)
+        let cellViewModel = searchViewModel.cells[newIndexPath?.row ?? 0]
+        return cellViewModel
+    }
+    
+    func playPreviousTrack() -> SearchViewModel.Cell? {
+        getTrack(isNextTrack: false)
+    }
+    
+    func playNextTrack() -> SearchViewModel.Cell? {
+        getTrack(isNextTrack: true)
+    }
+    
     
 }
