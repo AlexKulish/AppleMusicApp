@@ -18,6 +18,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     
     var interactor: SearchBusinessLogic?
     var router: (NSObjectProtocol & SearchRoutingLogic)?
+    weak var tabBarDelegate: MainTabBarControllerDelegate?
     
     private var searchViewModel = SearchViewModel(cells: [])
     private var timer: Timer?
@@ -101,22 +102,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let searchViewModel = searchViewModel.cells[indexPath.row]
         print("searchViewModel.trackName: ", searchViewModel.trackName)
-        
-        let trackDetailsView: TrackDetailsView = TrackDetailsView.loadFromNib()
-        trackDetailsView.setupFrame(with: view)
-        trackDetailsView.configure(viewModel: searchViewModel)
-        trackDetailsView.delegate = self
-        let window = UIApplication.shared.keyWindow
-        /*
-         настройка без keyWindow
-         let window = UIApplication.shared.connectedScenes
-         .filter({$0.activationState == .foregroundActive})
-         .compactMap({$0 as? UIWindowScene})
-         .first?.windows
-         .filter({$0.isKeyWindow}).first
-         */
-        window?.addSubview(trackDetailsView)
-        
+        tabBarDelegate?.maximizeTrackDetailsView(viewModel: searchViewModel)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
