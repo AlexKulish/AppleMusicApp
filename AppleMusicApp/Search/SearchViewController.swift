@@ -102,7 +102,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let searchViewModel = searchViewModel.cells[indexPath.row]
         print("searchViewModel.trackName: ", searchViewModel.trackName)
         
-        guard let trackDetailsView = Bundle.main.loadNibNamed("TrackDetailsView", owner: self, options: nil)?.first as? TrackDetailsView else { return }
+        let trackDetailsView: TrackDetailsView = TrackDetailsView.loadFromNib()
         trackDetailsView.setupFrame(with: view)
         trackDetailsView.configure(viewModel: searchViewModel)
         trackDetailsView.delegate = self

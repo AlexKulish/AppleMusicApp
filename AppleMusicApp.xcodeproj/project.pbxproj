@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5904A61F28D86BBA00E013DB /* UIView + Extension (Nib).swift in Sources */ = {isa = PBXBuildFile; fileRef = 5904A61E28D86BBA00E013DB /* UIView + Extension (Nib).swift */; };
 		5905945328BF8BB800E24D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905945228BF8BB800E24D9A /* AppDelegate.swift */; };
 		5905945528BF8BB800E24D9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905945428BF8BB800E24D9A /* SceneDelegate.swift */; };
 		5905945728BF8BB800E24D9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905945628BF8BB800E24D9A /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		06D13F498C73AC7650FF87B0 /* Pods-AppleMusicApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleMusicApp.release.xcconfig"; path = "Target Support Files/Pods-AppleMusicApp/Pods-AppleMusicApp.release.xcconfig"; sourceTree = "<group>"; };
 		4A7D2B01D13A7097C3109096 /* Pods-AppleMusicApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleMusicApp.debug.xcconfig"; path = "Target Support Files/Pods-AppleMusicApp/Pods-AppleMusicApp.debug.xcconfig"; sourceTree = "<group>"; };
+		5904A61E28D86BBA00E013DB /* UIView + Extension (Nib).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension (Nib).swift"; sourceTree = "<group>"; };
 		5905944F28BF8BB800E24D9A /* AppleMusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5905945228BF8BB800E24D9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5905945428BF8BB800E24D9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			children = (
 				595BA42628C8AD1400BEA681 /* UIViewController + Storyboard.swift */,
 				592D775828D32C5000B52949 /* CMTime + Extension.swift */,
+				5904A61E28D86BBA00E013DB /* UIView + Extension (Nib).swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				593CF4E328C7470C00246F16 /* SearchWorker.swift in Sources */,
 				593CF4E628C7470C00246F16 /* SearchViewController.swift in Sources */,
 				592D775928D32C5000B52949 /* CMTime + Extension.swift in Sources */,
+				5904A61F28D86BBA00E013DB /* UIView + Extension (Nib).swift in Sources */,
 				593CF4E428C7470C00246F16 /* SearchRouter.swift in Sources */,
 				593CF4E528C7470C00246F16 /* SearchModels.swift in Sources */,
 				5905945528BF8BB800E24D9A /* SceneDelegate.swift in Sources */,

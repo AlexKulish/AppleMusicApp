@@ -28,6 +28,7 @@ class TrackDetailsView: UIView {
     @IBOutlet weak var volumeSlider: UISlider!
     
     weak var delegate: TrackMovingDelegate?
+    weak var tabBarDelegate: MainTabBarControllerDelegate?
     
     // MARK: - Private properties
     
@@ -63,7 +64,7 @@ class TrackDetailsView: UIView {
     }
     
     @IBAction func hideScreenButtonPressed(_ sender: Any) {
-        self.removeFromSuperview()
+        tabBarDelegate?.minimizeTrackDetailsView()
     }
     
     @IBAction func previousTrackButtonPressed(_ sender: Any) {
