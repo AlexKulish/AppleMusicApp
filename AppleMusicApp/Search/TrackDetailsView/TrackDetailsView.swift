@@ -27,6 +27,15 @@ class TrackDetailsView: UIView {
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
     
+    @IBOutlet weak var miniTrackDetailsView: UIView!
+    @IBOutlet weak var miniTrackImageView: UIImageView!
+    @IBOutlet weak var miniTrackNameLabel: UILabel!
+    @IBOutlet weak var miniGoForwardButton: UIButton!
+    @IBOutlet weak var miniPlayPauseButton: UIButton!
+    
+    @IBOutlet weak var maximizedStackView: UIStackView!
+    
+    
     weak var delegate: TrackMovingDelegate?
     weak var tabBarDelegate: MainTabBarControllerDelegate?
     
@@ -82,10 +91,12 @@ class TrackDetailsView: UIView {
         if player.timeControlStatus == .paused {
             player.play()
             playPauseButton.setImage(UIImage(named: "Pause"), for: .normal)
+            miniPlayPauseButton.setImage(UIImage(named: "Pause"), for: .normal)
             increaseTrackImageView()
         } else {
             player.pause()
             playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+            miniPlayPauseButton.setImage(UIImage(named: "play"), for: .normal)
             decreaseTrackImageView()
         }
         
@@ -100,12 +111,16 @@ class TrackDetailsView: UIView {
     func configure(viewModel: SearchViewModel.Cell) {
         trackNameLabel.text = viewModel.trackName
         artistNameLabel.text = viewModel.artistName
+        miniTrackNameLabel.text = viewModel.trackName
         playTrack(with: viewModel.previewUrl)
         monitoringStartTime()
         observePlayerCurrentTime()
         let urlString600 = viewModel.iconStringUrl?.replacingOccurrences(of: "100x100", with: "600x600") ?? ""
         guard let url = URL(string: urlString600) else { return }
         trackImageView.sd_setImage(with: url, completed: nil)
+        miniTrackImageView.sd_setImage(with: url, completed: nil)
+        playPauseButton.setImage(UIImage(named: "Pause"), for: .normal)
+        miniPlayPauseButton.setImage(UIImage(named: "Pause"), for: .normal)
     }
     
     private func playTrack(with previewURL: String?) {
