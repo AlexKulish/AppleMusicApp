@@ -51,6 +51,7 @@ class TrackDetailsView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupGesture()
         
         let scale: CGFloat = 0.8
         trackImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
@@ -121,6 +122,58 @@ class TrackDetailsView: UIView {
         miniTrackImageView.sd_setImage(with: url, completed: nil)
         playPauseButton.setImage(UIImage(named: "Pause"), for: .normal)
         miniPlayPauseButton.setImage(UIImage(named: "Pause"), for: .normal)
+    }
+    
+    private func setupGesture() {
+        
+        miniTrackDetailsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openMaximizedTrackDetailViewForTap)))
+        
+        miniTrackDetailsView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(openMaximizedTrackDetailsViewForPan)))
+        
+    }
+    
+    // MARK: - Maximized and minimized gestures
+    
+    @objc private func openMaximizedTrackDetailViewForTap() {
+        tabBarDelegate?.maximizeTrackDetailsView(viewModel: nil)
+    }
+    
+    @objc private func openMaximizedTrackDetailsViewForPan(gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            print("began")
+        case .changed:
+            handlePanChanged(gesture: gesture)
+        case .ended:
+            handlePanEnded(gesture: gesture)
+        @unknown default:
+            print("unknown default")
+        }
+    }
+    
+    private func handlePanChanged(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        self.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        
+        print(translation.y)
+        let newAlpha = 1 + translation.y / 200
+        miniTrackDetailsView.alpha = newAlpha < 0 ? 0 : newAlpha
+        maximizedStackView.alpha = -translation.y / 200
+    }
+    
+    private func handlePanEnded(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        let velocity = gesture.velocity(in: self.superview)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.transform = .identity
+            if translation.y < -200 || velocity.y < -500 {
+                self.tabBarDelegate?.maximizeTrackDetailsView(viewModel: nil)
+            } else {
+                self.miniTrackDetailsView.alpha = 1
+                self.maximizedStackView.alpha = 0
+            }
+        }, completion: nil)
     }
     
     private func playTrack(with previewURL: String?) {
