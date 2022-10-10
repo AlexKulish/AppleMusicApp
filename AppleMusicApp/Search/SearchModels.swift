@@ -31,14 +31,52 @@ enum Search {
     }
 }
 
-struct SearchViewModel {
+class SearchViewModel: NSObject, NSCoding {
+    
     let cells: [Cell]
     
-    struct Cell: TrackCellViewModelProtocol {
+    init(cells: [Cell]) {
+        self.cells = cells
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(cells, forKey: "cells")
+    }
+    
+    required init?(coder: NSCoder) {
+        cells = coder.decodeObject(forKey: "cells") as? [SearchViewModel.Cell] ?? []
+    }
+    
+    @objc(_TtCC13AppleMusicApp15SearchViewModel4Cell)class Cell: NSObject, NSCoding {
+        
         let artistName: String
         let collectionName: String
         let trackName: String
         let iconStringUrl: String?
         let previewUrl: String?
+        
+        init(artistName: String, collectionName: String, trackName: String, iconStringUrl: String?, previewUrl: String?) {
+            self.artistName = artistName
+            self.collectionName = collectionName
+            self.trackName = trackName
+            self.iconStringUrl = iconStringUrl
+            self.previewUrl = previewUrl
+        }
+        
+        func encode(with coder: NSCoder) {
+            coder.encode(artistName, forKey: "artistName")
+            coder.encode(collectionName, forKey: "collectionName")
+            coder.encode(trackName, forKey: "trackName")
+            coder.encode(iconStringUrl, forKey: "iconStringUrl")
+            coder.encode(previewUrl, forKey: "previewUrl")
+        }
+        
+        required init?(coder: NSCoder) {
+            artistName = coder.decodeObject(forKey: "artistName") as? String ?? ""
+            collectionName = coder.decodeObject(forKey: "collectionName") as? String ?? ""
+            trackName = coder.decodeObject(forKey: "trackName") as? String ?? ""
+            iconStringUrl = coder.decodeObject(forKey: "iconStringUrl") as? String? ?? ""
+            previewUrl = coder.decodeObject(forKey: "previewUrl") as? String? ?? ""
+        }
     }
 }

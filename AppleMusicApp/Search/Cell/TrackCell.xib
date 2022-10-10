@@ -40,6 +40,25 @@
                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycE-XL-ysV">
+                        <rect key="frame" x="374" y="34" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <color key="tintColor" red="1" green="0.28235294119999998" blue="0.40784313729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="Add"/>
+                        <connections>
+                            <action selector="addTrackAction:" destination="PLQ-KZ-Adv" eventType="touchUpInside" id="bNK-eE-cle"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVo-RQ-9pX">
+                        <rect key="frame" x="309" y="16" width="56" height="31"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Look"/>
+                        <connections>
+                            <action selector="showTrack:" destination="PLQ-KZ-Adv" eventType="touchUpInside" id="g6t-BD-ki5"/>
+                        </connections>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -51,4 +70,7 @@
             <point key="canvasLocation" x="-414.49275362318843" y="63.616071428571423"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Add" width="16" height="16"/>
+    </resources>
 </document>
