@@ -47,8 +47,9 @@ class SearchViewModel: NSObject, NSCoding {
         cells = coder.decodeObject(forKey: "cells") as? [SearchViewModel.Cell] ?? []
     }
     
-    @objc(_TtCC13AppleMusicApp15SearchViewModel4Cell)class Cell: NSObject, NSCoding {
+    @objc(_TtCC13AppleMusicApp15SearchViewModel4Cell)class Cell: NSObject, NSCoding, Identifiable {
         
+        let id = UUID()
         let artistName: String
         let collectionName: String
         let trackName: String

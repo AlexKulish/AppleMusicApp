@@ -7,5 +7,6 @@ target 'AppleMusicApp' do
 
   pod 'Alamofire'
   pod 'SDWebImage'
+  pod 'SDWebImageSwiftUI'
 
 end

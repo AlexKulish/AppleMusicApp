@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct Library: View {
+    
+    let tracks = UserDefaults.standard.getSavedTracks()
+    
     var body: some View {
         VStack {
             GeometryReader { geometry in
@@ -39,25 +43,26 @@ struct Library: View {
             Divider()
                 .padding()
             
-            List {
-                LibraryCell()
-                Text("one")
-                Text("two")
+            List(tracks) { track in
+                LibraryCell(cell: track)
             }
         }
     }
 }
 
 struct LibraryCell: View {
+    
+    var cell: SearchViewModel.Cell
+    
     var body: some View {
         HStack {
-            Image("Image")
+            WebImage(url: URL(string: cell.iconStringUrl ?? ""))
                 .resizable()
                 .frame(width: 60, height: 60)
                 .cornerRadius(5)
-            VStack {
-                Text("Track name")
-                Text("Artist name")
+            VStack(alignment: .leading) {
+                Text("\(cell.trackName)")
+                Text("\(cell.artistName)")
             }
         }
         
