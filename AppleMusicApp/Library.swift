@@ -14,12 +14,14 @@ struct Library: View {
     @State private var isShowAlert = false
     @State private var track: SearchViewModel.Cell?
     
+    weak var tabBarDelegate: MainTabBarControllerDelegate?
+    
     var body: some View {
         VStack {
             GeometryReader { geometry in
                 HStack(spacing: 20) {
                     Button {
-                        print("12345")
+                        self.tabBarDelegate?.maximizeTrackDetailsView(viewModel: tracks.first)
                     } label: {
                         Image(systemName: "play.fill")
                             .frame(width: geometry.size.width / 2 - 10, height: 50)
@@ -28,7 +30,7 @@ struct Library: View {
                             .cornerRadius(10)
                     }
                     Button {
-                        print("54321")
+                        self.tracks = UserDefaults.standard.getSavedTracks()
                     } label: {
                         Image(systemName: "arrow.2.circlepath")
                             .frame(width: geometry.size.width / 2 - 10, height: 50)
@@ -48,11 +50,17 @@ struct Library: View {
             List {
                 ForEach(tracks) { track in
                     LibraryCell(cell: track)
+                        .frame(height: 84)
                         .gesture(LongPressGesture()
-                                    .onEnded({ _ in
+                                    .onEnded { _ in
                             self.track = track
                             self.isShowAlert = true
-                        }))
+                        })
+                        .simultaneousGesture(TapGesture()
+                                    .onEnded { _ in
+//                            self.track = track
+                            tabBarDelegate?.maximizeTrackDetailsView(viewModel: track) // подумать что лучше передавать ? self.track : track
+                        })
                 }
                 .onDelete(perform: deleteTrack)
             }
