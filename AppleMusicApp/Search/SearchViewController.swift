@@ -100,6 +100,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let searchViewModel = searchViewModel.cells[indexPath.row]
         print("searchViewModel.trackName: ", searchViewModel.trackName)
         tabBarDelegate?.maximizeTrackDetailsView(viewModel: searchViewModel)
