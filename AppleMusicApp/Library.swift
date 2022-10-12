@@ -10,7 +10,9 @@ import SDWebImageSwiftUI
 
 struct Library: View {
     
-    let tracks = UserDefaults.standard.getSavedTracks()
+    @State private var tracks = UserDefaults.standard.getSavedTracks()
+    @State private var isShowAlert = false
+    @State private var track: SearchViewModel.Cell?
     
     var body: some View {
         VStack {
@@ -43,10 +45,38 @@ struct Library: View {
             Divider()
                 .padding()
             
-            List(tracks) { track in
-                LibraryCell(cell: track)
+            List {
+                ForEach(tracks) { track in
+                    LibraryCell(cell: track)
+                        .gesture(LongPressGesture()
+                                    .onEnded({ _ in
+                            self.track = track
+                            self.isShowAlert = true
+                        }))
+                }
+                .onDelete(perform: deleteTrack)
             }
         }
+        .actionSheet(isPresented: $isShowAlert) {
+            ActionSheet(title: Text("Delete track?"),
+                        buttons: [
+                            .destructive(Text("Delete"), action: {
+                deleteTrack(track: self.track)
+            }) ,
+                            .cancel()])
+        }
+    }
+    
+    private func deleteTrack(at offset: IndexSet) {
+        tracks.remove(atOffsets: offset)
+        UserDefaults.standard.saveTracks(saveTracks: tracks)
+    }
+    
+    private func deleteTrack(track: SearchViewModel.Cell?) {
+        guard let track = track else { return }
+        guard let index = tracks.firstIndex(of: track) else { return }
+        tracks.remove(at: index)
+        UserDefaults.standard.saveTracks(saveTracks: tracks)
     }
 }
 
