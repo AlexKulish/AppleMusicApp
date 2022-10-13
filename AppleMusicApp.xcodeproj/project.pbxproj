@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5904A61F28D86BBA00E013DB /* UIView + Extension (Nib).swift in Sources */ = {isa = PBXBuildFile; fileRef = 5904A61E28D86BBA00E013DB /* UIView + Extension (Nib).swift */; };
 		5905945328BF8BB800E24D9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905945228BF8BB800E24D9A /* AppDelegate.swift */; };
-		5905945528BF8BB800E24D9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905945428BF8BB800E24D9A /* SceneDelegate.swift */; };
 		5905945C28BF8BB900E24D9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5905945B28BF8BB900E24D9A /* Assets.xcassets */; };
 		5905945F28BF8BB900E24D9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5905945D28BF8BB900E24D9A /* LaunchScreen.storyboard */; };
 		5905946728BF913100E24D9A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5905946628BF913100E24D9A /* MainTabBarController.swift */; };
@@ -40,7 +39,6 @@
 		5904A61E28D86BBA00E013DB /* UIView + Extension (Nib).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension (Nib).swift"; sourceTree = "<group>"; };
 		5905944F28BF8BB800E24D9A /* AppleMusicApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleMusicApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5905945228BF8BB800E24D9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5905945428BF8BB800E24D9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5905945B28BF8BB900E24D9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5905945E28BF8BB900E24D9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5905946028BF8BB900E24D9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				5905945228BF8BB800E24D9A /* AppDelegate.swift */,
-				5905945428BF8BB800E24D9A /* SceneDelegate.swift */,
 				5905946028BF8BB900E24D9A /* Info.plist */,
 			);
 			path = SupportFiles;
@@ -358,7 +355,6 @@
 				5904A61F28D86BBA00E013DB /* UIView + Extension (Nib).swift in Sources */,
 				593CF4E428C7470C00246F16 /* SearchRouter.swift in Sources */,
 				593CF4E528C7470C00246F16 /* SearchModels.swift in Sources */,
-				5905945528BF8BB800E24D9A /* SceneDelegate.swift in Sources */,
 				593CF4E228C7470C00246F16 /* SearchPresenter.swift in Sources */,
 				598D55FA28C5F73A00AFF843 /* NetworkService.swift in Sources */,
 			);
