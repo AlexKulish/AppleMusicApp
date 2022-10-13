@@ -28,7 +28,7 @@ class MainTabBarController: UITabBarController {
         setupTrackDetailsView()
         searchVC.tabBarDelegate = self
         trackDetailsView.tabBarDelegate = self
-        trackDetailsView.delegate = searchVC
+        trackDetailsView.trackMovingDelegate = searchVC
     }
     
     private func setupTabBar() {

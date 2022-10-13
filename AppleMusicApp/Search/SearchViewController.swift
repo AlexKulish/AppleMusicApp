@@ -52,6 +52,11 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         setupTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        moveTrack()
+    }
+    
     func displayData(viewModel: Search.Model.ViewModel.ViewModelData) {
         switch viewModel {
         case .displayTracks(let searchViewModel):
@@ -100,7 +105,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         let searchViewModel = searchViewModel.cells[indexPath.row]
         print("searchViewModel.trackName: ", searchViewModel.trackName)
         tabBarDelegate?.maximizeTrackDetailsView(viewModel: searchViewModel)
@@ -165,6 +169,16 @@ extension SearchViewController: TrackMovingDelegate {
     
     func playNextTrack() -> SearchViewModel.Cell? {
         getTrack(isNextTrack: true)
+    }
+    
+    private func moveTrack() {
+        let keyWindow = UIApplication.shared.connectedScenes
+            .filter({$0.activationState == .foregroundActive})
+            .compactMap({$0 as? UIWindowScene})
+            .first?.windows
+            .filter({$0.isKeyWindow}).first
+        let tabBarVC = keyWindow?.rootViewController as? MainTabBarController
+        tabBarVC?.trackDetailsView.trackMovingDelegate = self
     }
     
     

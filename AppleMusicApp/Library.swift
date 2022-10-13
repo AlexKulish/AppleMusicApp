@@ -21,7 +21,9 @@ struct Library: View {
             GeometryReader { geometry in
                 HStack(spacing: 20) {
                     Button {
-                        self.tabBarDelegate?.maximizeTrackDetailsView(viewModel: tracks.first)
+                        self.track = tracks.first
+                        tabBarDelegate?.maximizeTrackDetailsView(viewModel: self.track)
+                        moveTrack()
                     } label: {
                         Image(systemName: "play.fill")
                             .frame(width: geometry.size.width / 2 - 10, height: 50)
@@ -58,8 +60,9 @@ struct Library: View {
                         })
                         .simultaneousGesture(TapGesture()
                                     .onEnded { _ in
-//                            self.track = track
-                            tabBarDelegate?.maximizeTrackDetailsView(viewModel: track) // подумать что лучше передавать ? self.track : track
+                            self.track = track
+                            moveTrack()
+                            tabBarDelegate?.maximizeTrackDetailsView(viewModel: self.track)
                         })
                 }
                 .onDelete(perform: deleteTrack)
@@ -111,4 +114,54 @@ struct Library_Previews: PreviewProvider {
     static var previews: some View {
         Library()
     }
+}
+
+extension Library: TrackMovingDelegate {
+    
+    func playPreviousTrack() -> SearchViewModel.Cell? {
+        
+        guard let track = track else { return nil }
+        guard let index = tracks.firstIndex(of: track) else { return nil }
+        
+        var nextTrack: SearchViewModel.Cell?
+        
+        if index == 0 {
+            nextTrack = tracks.last
+        } else {
+            nextTrack = tracks[index - 1]
+        }
+        
+        self.track = nextTrack
+        return nextTrack
+        
+    }
+    
+    func playNextTrack() -> SearchViewModel.Cell? {
+        
+        guard let track = track else { return nil }
+        guard let index = tracks.firstIndex(of: track) else { return nil }
+        
+        var nextTrack: SearchViewModel.Cell?
+        
+        if index + 1 == tracks.count {
+            nextTrack = tracks.first
+        } else {
+            nextTrack = tracks[index + 1]
+        }
+        
+        self.track = nextTrack
+        return nextTrack
+        
+    }
+    
+    private func moveTrack() {
+        let keyWindow = UIApplication.shared.connectedScenes
+            .filter({$0.activationState == .foregroundActive})
+            .compactMap({$0 as? UIWindowScene})
+            .first?.windows
+            .filter({$0.isKeyWindow}).first
+        let tabBarVC = keyWindow?.rootViewController as? MainTabBarController
+        tabBarVC?.trackDetailsView.trackMovingDelegate = self
+    }
+    
 }

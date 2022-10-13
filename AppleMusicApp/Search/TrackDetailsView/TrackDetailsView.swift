@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 import AVKit
 
-protocol TrackMovingDelegate: AnyObject {
+protocol TrackMovingDelegate {
     func playPreviousTrack() -> SearchViewModel.Cell?
     func playNextTrack() -> SearchViewModel.Cell?
 }
@@ -36,7 +36,7 @@ class TrackDetailsView: UIView {
     @IBOutlet weak var maximizedStackView: UIStackView!
     
     
-    weak var delegate: TrackMovingDelegate?
+    var trackMovingDelegate: TrackMovingDelegate?
     weak var tabBarDelegate: MainTabBarControllerDelegate?
     
     // MARK: - Private properties
@@ -78,12 +78,12 @@ class TrackDetailsView: UIView {
     }
     
     @IBAction func previousTrackButtonPressed(_ sender: Any) {
-        guard let cellViewModel = delegate?.playPreviousTrack() else { return }
+        guard let cellViewModel = trackMovingDelegate?.playPreviousTrack() else { return }
         configure(viewModel: cellViewModel)
     }
     
     @IBAction func nextTrackButtonPressed(_ sender: Any) {
-        guard let cellViewModel = delegate?.playNextTrack() else { return }
+        guard let cellViewModel = trackMovingDelegate?.playNextTrack() else { return }
         configure(viewModel: cellViewModel)
     }
     
@@ -124,6 +124,8 @@ class TrackDetailsView: UIView {
         miniPlayPauseButton.setImage(UIImage(named: "Pause"), for: .normal)
     }
     
+    // MARK: - Gestures
+    
     private func setupGesture() {
         
         miniTrackDetailsView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openMaximizedTrackDetailViewForTap)))
@@ -133,8 +135,6 @@ class TrackDetailsView: UIView {
         addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(dissmissMaximizedTrackDetailsViewForPan)))
         
     }
-    
-    // MARK: - Maximized and minimized gestures
     
     @objc private func openMaximizedTrackDetailViewForTap() {
         tabBarDelegate?.maximizeTrackDetailsView(viewModel: nil)
@@ -146,24 +146,6 @@ class TrackDetailsView: UIView {
             handlePanChanged(gesture: gesture)
         case .ended:
             handlePanEnded(gesture: gesture)
-        @unknown default:
-            print("unknown default")
-        }
-    }
-    
-    @objc private func dissmissMaximizedTrackDetailsViewForPan(gesture: UIPanGestureRecognizer) {
-        let translation = gesture.translation(in: self.superview)
-        
-        switch gesture.state {
-        case .changed:
-            maximizedStackView.transform = CGAffineTransform(translationX: 0, y: translation.y)
-        case .ended:
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.maximizedStackView.transform = .identity
-                if translation.y > 50 {
-                    self.tabBarDelegate?.minimizeTrackDetailsView()
-                }
-            }, completion: nil)
         @unknown default:
             print("unknown default")
         }
@@ -192,6 +174,26 @@ class TrackDetailsView: UIView {
             }
         }, completion: nil)
     }
+    
+    @objc private func dissmissMaximizedTrackDetailsViewForPan(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self.superview)
+        
+        switch gesture.state {
+        case .changed:
+            maximizedStackView.transform = CGAffineTransform(translationX: 0, y: translation.y)
+        case .ended:
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.maximizedStackView.transform = .identity
+                if translation.y > 50 {
+                    self.tabBarDelegate?.minimizeTrackDetailsView()
+                }
+            }, completion: nil)
+        @unknown default:
+            print("unknown default")
+        }
+    }
+    
+    // MARK: - Play track
     
     private func playTrack(with previewURL: String?) {
         guard let url = URL(string: previewURL ?? "") else { return }
@@ -237,7 +239,6 @@ class TrackDetailsView: UIView {
             self?.durationLabel.text = "-\(durationTimeText)"
             self?.updateCurrentTimeSlider()
         }
-        
     }
     
     private func updateCurrentTimeSlider() {
@@ -246,9 +247,4 @@ class TrackDetailsView: UIView {
         let percentage = currentTimeSeconds / durationTimeSeconds
         currentTimeSlider.value = Float(percentage)
     }
-    
-    deinit {
-        print("deinit class")
-    }
-    
 }
