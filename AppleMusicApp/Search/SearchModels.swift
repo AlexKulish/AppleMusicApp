@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - enum Search
+
 enum Search {
     
     enum Model {
@@ -31,6 +33,8 @@ enum Search {
     }
 }
 
+// MARK: - SearchViewModel
+
 class SearchViewModel: NSObject, NSCoding {
     
     let cells: [Cell]
@@ -46,6 +50,8 @@ class SearchViewModel: NSObject, NSCoding {
     required init?(coder: NSCoder) {
         cells = coder.decodeObject(forKey: "cells") as? [SearchViewModel.Cell] ?? []
     }
+    
+    // MARK: - Cell
     
     @objc(_TtCC13AppleMusicApp15SearchViewModel4Cell)class Cell: NSObject, NSCoding, Identifiable {
         

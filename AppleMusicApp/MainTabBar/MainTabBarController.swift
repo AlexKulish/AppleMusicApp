@@ -8,6 +8,8 @@
 import UIKit
 import SwiftUI
 
+// MARK: - MainTabBarControllerDelegate
+
 protocol MainTabBarControllerDelegate: AnyObject {
     func minimizeTrackDetailsView()
     func maximizeTrackDetailsView(viewModel: SearchViewModel.Cell?)
@@ -15,12 +17,18 @@ protocol MainTabBarControllerDelegate: AnyObject {
 
 class MainTabBarController: UITabBarController {
     
+    // MARK: - Public properties
+    
     let searchVC: SearchViewController = SearchViewController.loadFromStoryboard()
     let trackDetailsView: TrackDetailsView = TrackDetailsView.loadFromNib()
+    
+    // MARK: - Private properties
     
     private var minimizedTopAnchorConstraint: NSLayoutConstraint!
     private var maximizedTopAnchorConstraint: NSLayoutConstraint!
     private var bottomAnchorConstraint: NSLayoutConstraint!
+    
+    // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +38,8 @@ class MainTabBarController: UITabBarController {
         trackDetailsView.tabBarDelegate = self
         trackDetailsView.trackMovingDelegate = searchVC
     }
+    
+    // MARK: - Private properties
     
     private func setupTabBar() {
         view.backgroundColor = .white
@@ -78,6 +88,8 @@ class MainTabBarController: UITabBarController {
     }
     
 }
+
+// MARK: - MainTabBarControllerDelegate
 
 extension MainTabBarController: MainTabBarControllerDelegate {
     

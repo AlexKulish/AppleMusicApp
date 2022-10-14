@@ -8,12 +8,19 @@
 
 import UIKit
 
+// MARK: - SearchPresentationLogic
+
 protocol SearchPresentationLogic {
     func presentData(response: Search.Model.Response.ResponseType)
 }
 
 class SearchPresenter: SearchPresentationLogic {
+    
+    // MARK: - Public properties
+    
     weak var viewController: SearchDisplayLogic?
+    
+    // MARK: - Public methods
     
     func presentData(response: Search.Model.Response.ResponseType) {
         switch response {
@@ -29,6 +36,8 @@ class SearchPresenter: SearchPresentationLogic {
             viewController?.displayData(viewModel: .displayFooterView)
         }
     }
+    
+    // MARK: - Private methods
     
     private func setupCellViewModel(from track: Track) -> SearchViewModel.Cell {
         return SearchViewModel.Cell(artistName: track.artistName,

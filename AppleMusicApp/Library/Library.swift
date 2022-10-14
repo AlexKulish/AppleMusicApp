@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct Library: View {
+    
+    // MARK: - Public properties
+    
+    weak var tabBarDelegate: MainTabBarControllerDelegate?
+    
+    // MARK: - Private properties
     
     @State private var tracks = UserDefaults.standard.getSavedTracks()
     @State private var isShowAlert = false
     @State private var track: SearchViewModel.Cell?
     
-    weak var tabBarDelegate: MainTabBarControllerDelegate?
+    // MARK: - Body
     
     var body: some View {
         VStack {
@@ -78,6 +83,8 @@ struct Library: View {
         }
     }
     
+    // MARK: - Private methods
+    
     private func deleteTrack(at offset: IndexSet) {
         tracks.remove(atOffsets: offset)
         UserDefaults.standard.saveTracks(saveTracks: tracks)
@@ -91,30 +98,15 @@ struct Library: View {
     }
 }
 
-struct LibraryCell: View {
-    
-    var cell: SearchViewModel.Cell
-    
-    var body: some View {
-        HStack {
-            WebImage(url: URL(string: cell.iconStringUrl ?? ""))
-                .resizable()
-                .frame(width: 60, height: 60)
-                .cornerRadius(5)
-            VStack(alignment: .leading) {
-                Text("\(cell.trackName)")
-                Text("\(cell.artistName)")
-            }
-        }
-        
-    }
-}
+// MARK: - Preview
 
 struct Library_Previews: PreviewProvider {
     static var previews: some View {
         Library()
     }
 }
+
+// MARK: - TrackMovingDelegate
 
 extension Library: TrackMovingDelegate {
     

@@ -17,26 +17,31 @@ import SDWebImage
 
 class TrackCell: UITableViewCell {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var trackImageView: UIImageView!
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var collectionNameLabel: UILabel!
     @IBOutlet weak var addTrackButton: UIButton!
     
+    // MARK: - Properties
     static let reuseID = "TrackCell"
     private var cell: SearchViewModel.Cell?
     private let userDefaults = UserDefaults.standard
     private var tracksList = [SearchViewModel.Cell]()
     
+    // MARK: - Lifecycle methods
     override class func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         trackImageView.image = nil
     }
+    
+    // MARK: - IBAction
     
     @IBAction func addTrackAction(_ sender: Any) {
         addTrackButton.isHidden = true
@@ -48,6 +53,8 @@ class TrackCell: UITableViewCell {
         
         userDefaults.saveTracks(saveTracks: tracksList)
     }
+    
+    // MARK: - Public methods
     
     func configure(viewModel: SearchViewModel.Cell) {
         cell = viewModel
@@ -61,6 +68,8 @@ class TrackCell: UITableViewCell {
         guard let url = URL(string: viewModel.iconStringUrl ?? "") else { return }
         trackImageView.sd_setImage(with: url)
     }
+    
+    // MARK: - Private methods
     
     private func isFavouriteTrack() {
         let savedTracks = userDefaults.getSavedTracks()

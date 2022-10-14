@@ -9,6 +9,8 @@ import UIKit
 import SDWebImage
 import AVKit
 
+// MARK: - TrackMovingDelegate
+
 protocol TrackMovingDelegate {
     func playPreviousTrack() -> SearchViewModel.Cell?
     func playNextTrack() -> SearchViewModel.Cell?
@@ -35,6 +37,7 @@ class TrackDetailsView: UIView {
     
     @IBOutlet weak var maximizedStackView: UIStackView!
     
+    // MARK: - Public properties
     
     var trackMovingDelegate: TrackMovingDelegate?
     weak var tabBarDelegate: MainTabBarControllerDelegate?
@@ -103,7 +106,7 @@ class TrackDetailsView: UIView {
         
     }
     
-    // MARK: - Setup
+    // MARK: - Configure
     
     func setupFrame(with someView: UIView) {
         self.frame = someView.frame
@@ -124,7 +127,19 @@ class TrackDetailsView: UIView {
         miniPlayPauseButton.setImage(UIImage(named: "Pause"), for: .normal)
     }
     
-    // MARK: - Gestures
+    // MARK: - Play track
+    
+    private func playTrack(with previewURL: String?) {
+        guard let url = URL(string: previewURL ?? "") else { return }
+        let playerItem = AVPlayerItem(url: url)
+        player.replaceCurrentItem(with: playerItem)
+        player.play()
+    }
+}
+
+// MARK: - Gestures
+
+extension TrackDetailsView {
     
     private func setupGesture() {
         
@@ -192,17 +207,11 @@ class TrackDetailsView: UIView {
             print("unknown default")
         }
     }
-    
-    // MARK: - Play track
-    
-    private func playTrack(with previewURL: String?) {
-        guard let url = URL(string: previewURL ?? "") else { return }
-        let playerItem = AVPlayerItem(url: url)
-        player.replaceCurrentItem(with: playerItem)
-        player.play()
-    }
-    
-    // MARK: - Animations
+}
+
+// MARK: - Animations
+
+extension TrackDetailsView {
     
     private func increaseTrackImageView() {
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {
@@ -216,8 +225,11 @@ class TrackDetailsView: UIView {
             self.trackImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
         }, completion: nil)
     }
-    
-    // MARK: - Time observer
+}
+
+// MARK: - Time observer
+
+extension TrackDetailsView {
     
     private func monitoringStartTime() {
         let time = CMTimeMake(value: 1, timescale: 3)

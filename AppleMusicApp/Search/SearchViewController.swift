@@ -8,17 +8,24 @@
 
 import UIKit
 
+// MARK: - SearchDisplayLogic
+
 protocol SearchDisplayLogic: AnyObject {
     func displayData(viewModel: Search.Model.ViewModel.ViewModelData)
 }
 
 class SearchViewController: UIViewController, SearchDisplayLogic {
     
+    // MARK: - IBOutlet
+    
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - Public properties
+    
     var interactor: SearchBusinessLogic?
-    var router: (NSObjectProtocol & SearchRoutingLogic)?
     weak var tabBarDelegate: MainTabBarControllerDelegate?
+    
+    // MARK: - Private properties
     
     private var searchViewModel = SearchViewModel(cells: [])
     private var timer: Timer?
@@ -31,17 +38,10 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         let viewController        = self
         let interactor            = SearchInteractor()
         let presenter             = SearchPresenter()
-        let router                = SearchRouter()
         viewController.interactor = interactor
-        viewController.router     = router
         interactor.presenter      = presenter
         presenter.viewController  = viewController
-        router.viewController     = viewController
     }
-    
-    // MARK: Routing
-    
-    
     
     // MARK: View lifecycle
     
@@ -57,6 +57,8 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         moveTrack()
     }
     
+    // MARK: - Public methods
+    
     func displayData(viewModel: Search.Model.ViewModel.ViewModelData) {
         switch viewModel {
         case .displayTracks(let searchViewModel):
@@ -69,6 +71,8 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
             footerView.showLoader()
         }
     }
+    
+    // MARK: - Private methods
     
     private func setupSearchBar() {
         let searchController = UISearchController(searchResultsController: nil)

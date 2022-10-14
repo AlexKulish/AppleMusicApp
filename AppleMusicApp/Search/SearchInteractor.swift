@@ -8,19 +8,21 @@
 
 import UIKit
 
+// MARK: - SearchBusinessLogic
+
 protocol SearchBusinessLogic {
     func makeRequest(request: Search.Model.Request.RequestType)
 }
 
 class SearchInteractor: SearchBusinessLogic {
     
+    // MARK: - Public properties
+    
     var presenter: SearchPresentationLogic?
-    var service: SearchService?
+    
+    // MARK: - Public methods
     
     func makeRequest(request: Search.Model.Request.RequestType) {
-        if service == nil {
-            service = SearchService()
-        }
         
         switch request {
         case .getTracks(let searchText):
