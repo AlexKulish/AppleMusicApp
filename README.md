@@ -27,8 +27,9 @@
 - AVKit
 - SDWebImage
 - Animations
-- Screen *Search (UIKit):* UITableView, UIStackView
-- Screen *Library (SwiftUI):* List + ForEach, GeometryReader
+- Gestures - tap and swipe
+- Screen *Search (UIKit) - * UITableView, UIStackView
+- Screen *Library (SwiftUI) - * List + ForEach, GeometryReader
 
 ## Preview
 
