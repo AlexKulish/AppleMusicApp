@@ -28,8 +28,8 @@
 - SDWebImage
 - Animations
 - Gestures - tap and swipe
-- Screen *Search (UIKit) - * UITableView, UIStackView
-- Screen *Library (SwiftUI) - * List + ForEach, GeometryReader
+- Screen *Search (UIKit) -* UITableView, UIStackView
+- Screen *Library (SwiftUI) -* List + ForEach, GeometryReader
 
 ## Preview
 
