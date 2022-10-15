@@ -63,7 +63,7 @@ class TrackDetailsView: UIView {
     
     // MARK: - IBActions
     
-    @IBAction func handleCurrentTimeSlider(_ sender: Any) {
+    @IBAction func changeCurrentTimeSlider() {
         guard let duration = player.currentItem?.duration else { return }
         let percentage = currentTimeSlider.value
         let durationInSeconds = CMTimeGetSeconds(duration)
@@ -72,26 +72,25 @@ class TrackDetailsView: UIView {
         player.seek(to: seekTime)
     }
     
-    @IBAction func handleVolumeSlider(_ sender: Any) {
+    @IBAction func changeVolumeSlider() {
         player.volume = volumeSlider.value
     }
     
-    @IBAction func hideScreenButtonPressed(_ sender: Any) {
+    @IBAction func hideScreenButtonPressed() {
         tabBarDelegate?.minimizeTrackDetailsView()
     }
     
-    @IBAction func previousTrackButtonPressed(_ sender: Any) {
+    @IBAction func previousTrackButtonPressed() {
         guard let cellViewModel = trackMovingDelegate?.playPreviousTrack() else { return }
         configure(viewModel: cellViewModel)
     }
     
-    @IBAction func nextTrackButtonPressed(_ sender: Any) {
+    @IBAction func nextTrackButtonPressed() {
         guard let cellViewModel = trackMovingDelegate?.playNextTrack() else { return }
         configure(viewModel: cellViewModel)
     }
     
-    @IBAction func playPauseButtonPressed(_ sender: Any) {
-        
+    @IBAction func playPauseButtonPressed() {
         if player.timeControlStatus == .paused {
             player.play()
             playPauseButton.setImage(UIImage(named: "Pause"), for: .normal)
@@ -258,5 +257,14 @@ extension TrackDetailsView {
         let durationTimeSeconds = CMTimeGetSeconds(player.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
         let percentage = currentTimeSeconds / durationTimeSeconds
         currentTimeSlider.value = Float(percentage)
+        
+        playNextTrackWhenItEnded()
+
+    }
+    
+    private func playNextTrackWhenItEnded() {
+        if currentTimeSlider.value == currentTimeSlider.maximumValue {
+            nextTrackButtonPressed()
+        }
     }
 }
